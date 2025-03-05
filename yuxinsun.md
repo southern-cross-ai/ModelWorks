@@ -4,10 +4,10 @@
 
 ## 🛠 About Me  
 👨‍💻 **AI & Data Science Enthusiast | App Developer**  
-🔭 **Currently working on:** Master of Computing  
-🌱 **Currently learning:** ML, HCI, Data processing, How to turn coffee into code ☕💻
-💬 **Ask me about:** Python, Data processing  
-🎨 **Fun fact:** Gaming 🎮 | Coding 💻
+🔭 **Currently working on:** Master of Computing**
+🌱 **Currently learning:** ML, HCI, Data processing, How to turn coffee into code ☕💻**
+💬 **Ask me about:** Python, Data processing**
+🎨 **Fun fact:** Gaming 🎮 | Coding 💻**
 ---
 
 ## 🔥 Tech Stack  
@@ -24,8 +24,8 @@
 ---
 
 ## 🤝 Connect with me  
-📧 **Email:** u7114085@anu.edu.au
-💼 **LinkedIn:** https://www.linkedin.com/in/yuxin-sun-499226352/
+📧 **Email:** u7114085@anu.edu.au**
+💼 **LinkedIn:** https://www.linkedin.com/in/yuxin-sun-499226352/**
 ---
 
 ✨ _"Keep coding and building amazing things!"_ 🚀  
