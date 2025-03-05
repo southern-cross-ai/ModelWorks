@@ -3,146 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Web Page</title>
-</head>
-<body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section>
-            <h2>About This Page</h2>
-            <p>This is a basic HTML template to get started with a simple webpage.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Your Website. All rights reserved.</p>
-    </footer>
-</body>
-</html>
-This template includes a basic structure with a header, navigation menu, main content section, and footer. You can modify it as you like! Let me know if you'd like to add anything else.
-
-You said:
-make it look fancier by adding css
-ChatGPT said:
-Sure! Here's an updated version of your index.html with some basic CSS to make it look fancier:
-
-html
-Copy
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish Web Page</title>
+    <title>ModelWorks</title>
     <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+            background-color: #f7f7f7;
             color: #333;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            padding: 20px;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-
-        nav ul {
-            list-style-type: none;
             margin: 0;
-            padding: 0;
-            text-align: center;
         }
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
+        /* Banner Style */
+        .banner {
+            background-color: #1e2a47;
             color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        section {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
             width: 100%;
-            bottom: 0;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
 
-        /* Responsive design for smaller screens */
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            color: #f2e8cf;
+            margin-top: 10px;
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 600px) {
-            nav ul li {
-                display: block;
-                margin: 10px 0;
+            .banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .banner p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Stylish Website</h1>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section>
-            <h2>About This Page</h2>
-            <p>This page is a simple template with a modern, clean design. It is styled using basic CSS to make it look more appealing.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Your Website. All rights reserved.</p>
-    </footer>
+    <div class="banner">
+        <h1>ModelWorks</h1>
+        <p>We are a team of software engineers making AI models</p>
+    </div>
 </body>
 </html>
