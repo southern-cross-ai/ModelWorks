@@ -1,7 +1,7 @@
 # Arnav's Profile
 
 ## 🎓 About Me
-I am a third-year Bachelor of Engineering (Honours) student at ANU, majoring in Software Engineering with a focus on Cybersecurity. My interests lie at the intersection of Artificial Intelligence and Cybersecurity, where I explore innovative solutions to security challenges using AI-driven techniques.
+I am a third-year Bachelor of Software Engineering (Honours) student at ANU, majoring in Cybersecurity. My interests lie at the intersection of Artificial Intelligence and Cybersecurity, where I explore innovative solutions to security challenges using AI-driven techniques.
 
 ## 🔬 Experience
 - **Computer Networking**: Network protocols, security, and infrastructure
@@ -19,12 +19,6 @@ I am currently involved in **ModelWorks**, a project-driven initiative that appl
 - **Phishing Website Detection** 🛡️ – Using ML to identify fraudulent sites
 - **Intrusion Detection Systems** 🔍 – AI-powered threat detection
 - **Suicide Ideation Detection** 💡 – NLP models for identifying mental health risks
-
-## 📚 What I’m Learning in My Current project
-- Advanced AI security applications
-- Optimization techniques for AI-driven threat detection
-- Secure software design patterns
-- Scalable system architectures
 
 ## 💡 My Vision
 I am passionate about building AI-enhanced security solutions that are both scalable and impactful. I aim to bridge the gap between cyber defense strategies and AI automation, creating intelligent systems that improve security resilience.
