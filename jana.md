@@ -1,6 +1,6 @@
-**Jana ([@j-sawn](https://github.com/j-sawn))**
+**Jana 💥 ([@j-sawn](https://github.com/j-sawn))**
 <br><br>
-* 3rd Year Undergrad
+* 3rd Year Undergrad 
 * Bach. of Engineering (Software Engineering)
 * Coder in-training :P
 <br>
