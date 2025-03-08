@@ -2,9 +2,11 @@
 
 ---
 
-# :polarbear:About Me
+# 🐻‍❄️About Me
 
 I am currently a **Mater of Computing** student at **ANU**. 
+![self-avdar](https://github.com/Jayiee/SelfImage/blob/main/self-avadar.jpg)
+
 
 ---
 
@@ -21,6 +23,6 @@ I am currently a **Mater of Computing** student at **ANU**.
 
 # 🍕Connect With Me
 
-- :me:**GitHub: [Jayiee](https://github.com/Jayiee)**
-- :linkedin:**Linkedin: [Jaylee(Jiaye) Yuan](https://www.linkedin.com/in/jaylee-jiaye-yuan-88a853252/)**
-- :huggingface:**Hugging Face: [Jayiee](https://huggingface.co/Jayiee)**
+- **GitHub: [Jayiee](https://github.com/Jayiee)**
+- **Linkedin: [Jaylee(Jiaye) Yuan](https://www.linkedin.com/in/jaylee-jiaye-yuan-88a853252/)**
+- **Hugging Face: [Jayiee](https://huggingface.co/Jayiee)**
