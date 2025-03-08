@@ -6,7 +6,7 @@
 
 I am currently a **Mater of Computing** student at **ANU**. 
 
-<img src="https://github.com/Jayiee/SelfImage/blob/main/self-avadar.jpg" width="300">
+<img src="https://github.com/Jayiee/SelfImage/blob/main/self-avadar.jpg" width="200">
 
 
 ---
