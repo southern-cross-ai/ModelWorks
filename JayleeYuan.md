@@ -5,7 +5,9 @@
 # 🐻‍❄️About Me
 
 I am currently a **Mater of Computing** student at **ANU**. 
-![self-avdar](https://github.com/Jayiee/SelfImage/blob/main/self-avadar.jpg)
+
+
+![self-avdar](https://github.com/Jayiee/SelfImage/blob/main/self-avadar.jpg) {width=200}
 
 
 ---
