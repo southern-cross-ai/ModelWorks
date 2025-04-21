@@ -1,10 +1,7 @@
-# Use Ubuntu 24.04 for stability
 FROM ubuntu:24.04
 
-# Set environment variable for non-interactive installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Update system and install necessary packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     vim \
@@ -21,23 +18,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git-lfs \
     && rm -rf /var/lib/apt/lists/*  
 
-# Ensure 'python3' is recognized as 'python'
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-# Default command (for interactive HPC usage)
-CMD ["/bin/bash"]
+# Copy code
+COPY app/ /app
+WORKDIR /app
 
-RUN git clone https://github.com/southern-cross-ai/ModelWorks.git 
-
-WORKDIR ModelWorks
-RUN git checkout pdf_reader_bot
-
-WORKDIR app
-
+# Setup virtual environment
 RUN python3 -m venv .venv
-
-RUN .venv/bin/python
-
 RUN .venv/bin/pip install -r requirements.txt
 
-ENTRYPOINT [ ".venv/bin/python", "app.py" ]
+# Run the app
+# ENTRYPOINT [".venv/bin/python", "app.py"]
