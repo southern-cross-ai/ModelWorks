@@ -5,8 +5,14 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 
-# Load the DeepSeek R1 1.5B model in Ollama
-llm = OllamaLLM(model="deepseek-r1:1.5b")
+# # Load the DeepSeek R1 1.5B model in Ollama
+# llm = OllamaLLM(model="deepseek-r1:1.5b")
+
+# ChangeTo：tell langchain_ollama access the Ollama service in the container
+llm = OllamaLLM(
+    model="deepseek-r1:1.5b",
+    base_url="http://ollama:11434"  # "ollama" is the service name in docker-compose
+)
 
 # Select a Embedding Model (provided by LangChain)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -84,7 +90,7 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         query_input = gr.Textbox(label="🔍 Enter your question", placeholder="What is DeepSeek?")
-        query_output = gr.Textbox(label="🤖 AI Answer", interactive=True)
+        query_output = gr.Textbox(label="🤖 AI Answer")
 
     search_button = gr.Button("🔎 Search and Generate Answer")
     search_button.click(generate_answer, inputs=query_input, outputs=query_output)
@@ -93,5 +99,7 @@ with gr.Blocks() as demo:
 
 # Launch Gradio app on a specific port
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    # demo.launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch(server_name="0.0.0.0", server_port=7860, share=True)
+    # demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
 
