@@ -64,7 +64,7 @@ main_theme = Modelworks()
 ########################################################
 
 # Load the DeepSeek R1 1.5B model in Ollama
-llm = OllamaLLM(model="deepseek-r1:1.5b")
+llm = OllamaLLM(model="gemma3:1b")
 
 # Select a Embedding Model (provided by LangChain)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -129,7 +129,7 @@ def generate_answer(query):
 # Create a Gradio interface
 with gr.Blocks(theme=main_theme) as demo:
 
-    gr.Markdown("<div style='display: flex; margin: auto; text-align: center;'> <img style='display: block;' src='https://avatars.githubusercontent.com/u/159676205' alt='Southern Cross AI Logo' height='50' width='50'> <h2 style='display: block;'>⠀⠀⠀PDF Semantic Search + DeepSeek-R1:1.5B Question Answering System </h2> </div>"),
+    gr.Markdown("<div style='display: flex; margin: auto; text-align: center;'> <img style='display: block;' src='https://avatars.githubusercontent.com/u/159676205' alt='Southern Cross AI Logo' height='50' width='50'> <h2 style='display: block;'>⠀⠀⠀PDF Semantic Search + Gemma3 (1B) Question Answering System </h2> </div>"),
     gr.Markdown("### 🔹 Upload a PDF and Perform Semantic Search")
 
     with gr.Row():
@@ -142,7 +142,7 @@ with gr.Blocks(theme=main_theme) as demo:
     gr.Markdown("### 🔹 Semantic Search + LLM Answer Generation")
 
     with gr.Row():
-        query_input = gr.Textbox(label="🔍 Enter your question", placeholder="What is DeepSeek?")
+        query_input = gr.Textbox(label="🔍 Enter your question", placeholder="What is Gemma3?")
         query_output = gr.Textbox(label="🤖 AI Answer", interactive=True)
 
     search_button = gr.Button("🔎 Search and Generate Answer")
