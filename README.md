@@ -1,4 +1,17 @@
 # 🌐 ModelWorks
+
+<h2 style="font-size: 24px;">Purpose of Branch</h2>  
+
+ 
+
+<p style="font-size: 16px;">  
+
+  
+So far there is no code associated with the Open WebUI component (at least for now), so this branch will just carry any needed requirements.  This can be demonstrated by running `open-webui serve` in one terminal and `ollama serve` in another.
+  
+
+</p>  
+
 <h2 style="font-size: 24px;">Introduction 🌀</h2>  
 
  
