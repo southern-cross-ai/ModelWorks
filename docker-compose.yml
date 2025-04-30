@@ -7,10 +7,18 @@ services:
       - "11434:11434"
     volumes:
       - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=deepseek-r1:1.5b
+    restart: always
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"  
     restart: always
 
-  gradio-ui:
-    build: ./gradio-ui
+  backend:
+    build: ./backend
     ports:
       - "7860:7860"
     depends_on:
