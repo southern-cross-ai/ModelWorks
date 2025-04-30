@@ -12,13 +12,15 @@ services:
     restart: always
   
   frontend:
-    build: ./frontend
+    # build: ./frontend
+    image: southerncrossai/modelworks_frontend:frontend
     ports:
       - "3000:80"  
     restart: always
 
   backend:
-    build: ./backend
+    # build: ./backend
+    image: southerncrossai/modelworks_frontend:backend
     ports:
       - "7860:7860"
     depends_on:
