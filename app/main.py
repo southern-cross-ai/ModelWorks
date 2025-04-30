@@ -5,8 +5,12 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.schema import Document
 
+from langchain_ollama import ChatOllama
+from langchain_core.messages import AIMessage
+from langchain_core.prompts import ChatPromptTemplate
+
 # Load the DeepSeek R1 1.5B model in Ollama
-llm = OllamaLLM(model="deepseek-r1:1.5b")
+llm = ChatOllama(model="deepseek-r1:1.5b", endpoint="http://localhost:11434")
 
 # Select a Embedding Model (provided by LangChain)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
@@ -55,8 +59,8 @@ def search_similar_chunks(query, k=3):
 
 # Function to interact with the model
 def chat_with_model(prompt):
-    response = llm.invoke(prompt)  # Invoke the model with user input
-    return response
+   message = get_user_input_and_translate(prompt)
+   return message
 
 def generate_answer(query):
     """Let the LLM generate an answer based on retrieved documents"""
@@ -67,6 +71,22 @@ def generate_answer(query):
     response = llm.invoke(prompt)
 
     return f"**🔍 Relevant Document Snippets:**\n{context}\n\n**🤖 LLM Answer:**\n{response}"
+
+# Function to get user input and interact with the model (for translation)
+def get_user_input_and_translate(prompt):
+    # Define the conversation with system and human messages
+    messages = [
+        (
+            "system",
+            "Only respond in numbers",
+        ),
+        ("human", prompt)
+    ]
+
+    # Generate the AI response based on user input
+    ai_msg = llm.invoke(messages)
+    return ai_msg
+
 
 # Create a Gradio interface
 with gr.Blocks() as demo:
