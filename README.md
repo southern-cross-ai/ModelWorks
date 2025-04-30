@@ -48,7 +48,6 @@ All components run in isolated containers orchestrated with Docker Compose for e
 | Layer       | Technology               |
 |-------------|---------------------------|
 | Backend     | Python, LangChain         |
-| Embeddings  | SentenceTransformers      |
 | Vector DB   | Chroma                    |
 | LLM         | Ollama                    |
 | UI          | Gradio                    |
