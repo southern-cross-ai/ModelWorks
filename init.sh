@@ -3,7 +3,7 @@
 MODEL="deepseek-r1:1.5b"
 
 echo "🔧 Starting Ollama service..."
-docker-compose up -d
+docker-compose up --build
 
 echo "⏳ Waiting for Ollama service to become ready..."
 until curl -s http://localhost:11434 > /dev/null; do
