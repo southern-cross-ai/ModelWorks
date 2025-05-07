@@ -1,5 +1,5 @@
-# 🌐 ModelWorks: PDF Semantic Search & LLM QA System
-<h2 style="font-size: 24px;">🧠 Overview</h2>  
+# 🌐 ModelWorks
+<h2 style="font-size: 24px;">Introduction 🌀</h2>  
 
  
 
@@ -7,20 +7,11 @@
 
   
 
-This branch of ModelWorks delivers an end-to-end system for semantic document search and intelligent question answering. Users can upload a PDF file, extract its semantic content into a vector database (Chroma), and query it using natural language via a large language model hosted on Ollama.
-
-All components run in isolated containers orchestrated with Docker Compose for easy deployment and reproducibility.
+Modelworks is a collaborative team dedicated to developing practical, impactful AI solutions that address real-world challenges. Our mission is to bridge the gap between advanced artificial intelligence research and everyday applications by creating specialized models tailored to specific tasks.  
 
   
 
 </p>  
-
-<hr>
-   
-
-  
-
-<h2 style="font-size: 24px;">🚀 Features</h2>  
 
   
 
@@ -28,91 +19,152 @@ All components run in isolated containers orchestrated with Docker Compose for e
 
   
 
-📄 PDF Upload — Extracts and splits text from uploaded PDF documents.
-
-🔎 Semantic Embedding — Stores document chunks in ChromaDB using Sentence Transformers.
-
-🤖 AI QA via Ollama — Answers user queries using DeepSeek-R1:1.5B hosted in a container.
-
-🧩 Integrated Interface — Intuitive Gradio UI for document processing and QA.
+By leveraging a robust development pipeline and integrating state-of-the-art techniques, we ensure that each solution is innovative, efficient, and scalable. Our focus is on transforming theoretical concepts into practical tools that can drive meaningful change in various industries.  
 
   
 
 </p>  
 
+  
 
-<br> 
+   
 
-<h3 style="font-size: 24px;">🧱 Tech Stack</h3>  
+  
 
-| Layer       | Technology               |
-|-------------|---------------------------|
-| Backend     | Python, LangChain         |
-| Vector DB   | Chroma                    |
-| LLM         | Ollama                    |
-| UI          | Gradio                    |
-| Container   | Docker + Compose          |
+<h2 style="font-size: 24px;">🫧 Our Approach</h2>  
 
-<br>
+  
 
+<p style="font-size: 16px;">  
 
+  
 
-## 🐳 Quick Start
+Our process begins with a comprehensive analysis of the problem domain, followed by the design of a custom AI pipeline that includes data collection, model training, and performance optimization. We embrace agile methodologies to iterate quickly and adapt our solutions as new challenges emerge.  
 
-### 1. Clone & Build
+  
 
-```bash
-git clone https://github.com/yourusername/ModelWorks.git
-cd ModelWorks
-docker compose up --build
-```
+</p>  
 
+  
 
+<p style="font-size: 16px;">  
 
-### 2. Access UI
+  
 
-Visit [http://localhost:7860](http://localhost:7860) to use the interface.
+The pipeline is engineered to support end-to-end development, ensuring seamless integration between different stages of the project. Continuous testing and refinement are core principles, enabling us to maintain high standards of quality throughout the development lifecycle.  
 
-<br>
+  
 
+</p>  
 
-<br>
+  
 
-## 📌 Usage Workflow
+   
 
-1. **Upload PDF** → Split paragraphs and store in Chroma.
-2. **Ask a Question** → The system retrieves relevant text.
-3. **LLM Answer** → Generate a contextual response.
+  
 
-<br>
+<h3 style="font-size: 24px;">Environment</h3>  
 
-## 🛠 Development Tips
+<ul style="font-size: 16px;">  
 
-- To rebuild the image after code changes:
+  <li>Docker</li>  
 
-```bash
-docker compose build
-```
+  <li>VSCode</li>  
 
-- To stop all services:
+  <li>Python</li> 
 
-```bash
-docker compose down
-```
+  <ul style="font-size: 16px;">  
 
-- For troubleshooting Ollama:
+  <li> Pytorch </li> 
 
-```bash
-docker exec -it <ollama-container-name> bash
-```
+  </ul> 
 
-<br>
+</ul>  
 
+<h3 style="font-size: 24px;">Storage</h3>  
 
+  <li>Chroma</li>   
 
----
+<h3 style="font-size: 24px;">LLM</h3>  
 
-## 📄 License & Contribution
+  <li>Ollama</li>  
 
-Refer to [CONTRIBUTING.md](./CONTRIBUTING.md) to get started with contributions.
+  <li>Langchain</li>   
 
+<h3 style="font-size: 24px;">UI</h3>   
+
+<li>Gradio</li>  
+
+   
+
+  
+
+<h2 style="font-size: 24px;">Team Members 👾</h2>  
+
+  
+
+<ul style="font-size: 16px;">  
+
+  
+
+  <li>Tom – Bachelor of Advanced Computing - Scribe</li>  
+
+  
+
+  <li>Xuan – Bachelor of Software Engineering – Project Manager</li>  
+
+  
+
+  <li>Jana – Bachelor of Software Engineering - Monitor</li>  
+
+  
+
+  <li>Arnav – Bachelor of Software Engineering - Spokesperson</li>  
+
+  
+
+  <li>Scarlett – Master of Computing - Checker</li>  
+
+  
+
+  <li>Josh – Bachelor of Computing - Deputy</li>  
+
+  
+
+  <li>Jaylee – Master of Computing - Coordinator</li>  
+
+  
+
+</ul>  
+
+  
+
+   
+
+  
+
+<h2 style="font-size: 24px;">☁️ Deliverables</h2>  
+
+  
+
+<p style="font-size: 16px;">  
+
+  
+
+Our project aims to produce a set of comprehensive deliverables that demonstrate our technical expertise and provide practical, end-to-end AI solutions. The main focus of development being a pipeline for specialised AI models will allow for many opportunities to address real-world problems, ideally along the lines of: 
+
+  
+
+* Phishing Website Detector - Using ML techniques to protect users from fraudulent websites. 
+
+* Intrusion Detection System - Enhancing network security through AI-driven threat detection. 
+
+* Suicide Ideation Detector - Leveraging natural language processing to identify at-risk individuals from text. 
+
+  
+
+We will also ensure that this pipeline will have a user interface that enhances interaction and usability, along with a reliable database management system that supports secure data handling.  
+
+  
+
+</p> 
