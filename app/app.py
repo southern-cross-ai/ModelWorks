@@ -64,7 +64,12 @@ main_theme = Modelworks()
 ########################################################
 
 # Load the DeepSeek R1 1.5B model in Ollama
-llm = OllamaLLM(model="gemma3:1b")
+# TODO：tell langchain_ollama access the Ollama service in the container
+llm = OllamaLLM(
+    #model="deepseek-r1:1.5b",
+    model="gemma3:1b",
+    base_url="http://ollama:11434"  # "ollama" is the service name in docker-compose
+)
 
 # Select a Embedding Model (provided by LangChain)
 embedding_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
