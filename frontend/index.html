@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>DeepSeek QA</title>
+  <style>
+    #answer {
+      font-family: 'Segoe UI Emoji', 'Noto Color Emoji', 'Apple Color Emoji', sans-serif;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Ask the AI</h2>
-  <input id="query" placeholder="Your question" />
-  <button type="button" onclick="ask()">Send</button>
-  <pre id="answer"></pre>
+  <h2>Ask the AI</h2> 
 
+  <h2>Upload a PDF</h2>
+  <input type="file" id="pdf" accept=".pdf,application/pdf" />
+  <button onclick="uploadPDF()">Upload PDF</button>
+
+  <h2>Ask a Question</h2>
+  <input type="text" id="query" placeholder="Ask something..." />
+  <button type="button" onclick="ask()">Send</button>
+  <div id="answer" style="margin-top: 20px;"></div>
+
+ 
   <script src="script.js"></script>
 </body>
 </html>
