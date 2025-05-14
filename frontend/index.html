@@ -1,14 +1,87 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>DeepSeek QA</title>
 </head>
 <body>
-  <h2>Ask the AI</h2>
-  <input id="query" placeholder="Your question" />
-  <button type="button" onclick="ask()">Send</button>
-  <pre id="answer"></pre>
+  
+  <h2 class="text">Ask the AI</h2>
+  <p class="text"> Ask the AI anything and it will do it for you 🪄 Hopefully </p>
+  
+  <br>
+  
+  <div id="alltogether">
+  
+  <div id="left">
+    <h3 class="text">Chat History</h3>
+    <p class="text" id="history"> </p>
+  </div>
+  
+  <div id="middle">
+    <h3 class="text">MODEL: Deepseek R5 (1.5B)</h3> <!-- This will change -->
+      <div id="chatbox"> 
+        <div id="user"></div> <!-- change id to class -->
+        <div id="answer"></div> <!-- change id to class -->
+      </div>
+    
+      <br>
 
-  <script src="script.js"></script>
+      <div id="askbox">
+        <input id="query" placeholder="Your question" /> <!-- left -->
+        <button type="button" onclick="ask()">Send</button> <!-- left -->
+      </div>
+  </div>
+  
+    
+    
+    
+    
+  <div id="right"> 
+    
+    <h3 class="text"> Upload a PDF: </h3> 
+    
+    <div id="ragdiv"> 
+      <div id="dragbox" ondrop="drop(event)" ondragover="dragover(event)"> DRAG or DROP </div>
+      <br>
+      <div class="display">
+        <button id="rag" type="button"> Submit </button>
+      </div>
+    </div>
+
+    <br>
+    
+    <div id="webdiv"> 
+      <h3 class="text"> Websearch Mode: </h3> 
+      <div class="display">
+        <input type="checkbox" id="websearch" name="ON" checked /> <!-- call websearch function depending on whether this is checked or not -->
+      </div>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div id="ratediv"> 
+      <h3 class="text"> How are you rating your experience so far? </h3> 
+      <div class="display">
+        <input type="range" id="rating" name="rating" min="0" max="5" />
+      </div>
+    </div>
+    
+    
+  </div>
+    
+</div>
+    
+  <br>
+  
+  <div class="display">
+    <button id="lightmode" type="button" onclick="light()">🌔</button>
+    <button id="darkmode" type="button" onclick="dark()">🌒</button>
+  </div>
+  
+  <p class="text"> Modelworks © 2025 </p>
+
+  <script src="script.js"></script>    
 </body>
 </html>
