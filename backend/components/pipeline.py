@@ -8,7 +8,7 @@ def call(query: str, messages: list = []):
 
     context = retrieve.retrieve(history_aware_query)
 
-    if context == []:
+    if context != []:
         contextualized_query = format(history_aware_query, context)
         llm_response = llm.call(contextualized_query)
     else: 
