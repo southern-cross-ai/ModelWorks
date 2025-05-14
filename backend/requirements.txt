@@ -1,3 +1,9 @@
 langchain-ollama==0.2.3
 fastapi
 uvicorn[standard]==0.29.0
+
+langchain
+langchain-chroma
+chromadb
+pdfplumber
+python-multipart
