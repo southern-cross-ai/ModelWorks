@@ -6,5 +6,4 @@ chmod +x init.sh
 ./init.sh
 ```
 (delete ENTRYPOINT line in backend's Dockerfile)
-Start the backend container again when you're ready
-OR make whatever changes you need, run `./init.sh` again
+Run `./init.sh` again when you're ready
