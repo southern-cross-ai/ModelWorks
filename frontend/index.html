@@ -1,166 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeepSeek QA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    :root {
+      --background: #f5f5f5;
+      --text-color: #333;
+      --primary: #6C63FF;
+      --secondary: #FF6584;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+    }
+    body.dark {
+      --background: #1e1e1e;
+      --text-color: #e0e0e0;
+      --card-bg: #2e2e2e;
+      --card-shadow: rgba(0, 0, 0, 0.5);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--background);
+      color: var(--text-color);
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 20px;
+      height: 100vh;
+      padding: 20px;
+    }
+    .column {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
+    .column h2, .column h3, .column p {
+      margin-top: 0;
+    }
+    .chatbox {
+      flex: 1;
+      background-color: var(--background);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-y: auto;
+    }
+    #history {
+      white-space: pre-wrap;
+      flex: 1;
+    }
+    .message {
+      max-width: 80%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .message.user {
+      align-self: flex-end;
+      background-color: var(--primary);
+      color: #fff;
+    }
+    .message.bot {
+      align-self: flex-start;
+      background-color: var(--secondary);
+      color: #fff;
+    }
+    .input-group {
+      display: flex;
+      margin-top: 10px;
+    }
+    #query {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      color: var(--text-color);
+      background: var(--card-bg);
+    }
+    button {
+      margin-left: 10px;
+      padding: 0 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: var(--secondary);
+    }
+    .dragbox {
+      flex: 1;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      color: var(--text-color);
+      background: var(--card-bg);
+    }
+    .display {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-color);
+    }
+    @media (max-width: 800px) {
+      .container {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
-  
-  <h2 class="text">Ask the AI</h2>
-  <p class="text"> Ask the AI anything and it will do it for you... Hopefully </p>
-
-  <br>
-  
-  
-  <div id="alltogether">
-    <div id="left">
-      <h3 class="text">Chat History</h3>
-      <p class="text" id="history"></p>
+  <button id="theme-toggle" class="theme-toggle">🌔</button>
+  <div class="container">
+    <div class="column">
+      <h2>Chat History</h2>
+      <pre id="history"></pre>
     </div>
-    <div id="middle">
-      <h3 class="text">MODEL: Deepseek R1 (1.5B)</h3> <!-- This will dynamically change once we implement model switching -->
-      <div id="chatbox"> 
-        <div id="user"></div>
-        <div id="answer"></div>
+    <div class="column">
+      <h2>MODEL: Deepseek R5 (1.5B)</h2>
+      <div class="chatbox" id="chatbox">
+        <!-- messages will appear here -->
       </div>
-      <br>
-      <div id="askbox">
-        <input id="query" placeholder="Your question" />
+      <div class="input-group">
+        <input id="query" placeholder="Your question..." />
         <button type="button" onclick="ask()">Send</button>
       </div>
     </div>
-    <div id="right"> 
-      <h3 class="text"> Upload a PDF: </h3>
-      <div id="ragdiv">
-        <div id="dragbox" ondrop="drop(event)" ondragover="dragover(event)"> DRAG or DROP </div>
-        <br>
-        <div class="display">
-          <button id="rag" type="button"> Submit </button>
-        </div>
+    <div class="column">
+      <h2>Upload a PDF</h2>
+      <div class="dragbox" id="dragbox">DRAG or DROP</div>
+      <div class="display">
+        <button id="rag" type="button">Submit</button>
       </div>
-      <br>
-      <div id="webdiv">
-        <h3 class="text"> Websearch Mode: </h3>
-        <div class="display">
-          <input type="checkbox" id="websearch" name="ON" checked />
-        </div>
+      <h2>Websearch Mode</h2>
+      <div class="display">
+        <label><input type="checkbox" id="websearch" checked /> ON</label>
       </div>
-      <br><br><br><br>
-      <div id="ratediv">
-        <h3 class="text"> How are you rating your experience so far? </h3>
-        <div class="display">
-          <input type="range" id="rating" name="rating" min="0" max="5" />
-        </div>
+      <h2>Rate Your Experience</h2>
+      <div class="display">
+        <input type="range" id="rating" min="0" max="5" />
       </div>
     </div>
   </div>
-
-  <br>
-  
-  <div class="display">
-    <button id="lightmode" type="button" onclick="light()">&#127764</button>
-    <button id="darkmode" type="button" onclick="dark()">&#127762</button>
-  </div>
-  
-  <p class="text"> Modelworks © 2025 </p>
-
-  <script src="script.js"></script>    
-  
-  <script> // for set up
-    // Wrap everything in a DOMContentLoaded listener
-    document.addEventListener("DOMContentLoaded", function () {
-
-      document.body.style.fontFamily = "Montserrat", "sans-serif";
-
-      document.getElementById("alltogether").style.width = "100%"
-      document.getElementById("alltogether").style.display = "flex"
-      document.getElementById("alltogether").style.flexDirection = "row"
-      document.getElementById("alltogether").style.justifyContent = "center"
-
-
-      document.getElementById("left").style.width = "30%"
-      document.getElementById("left").style.display = "inline-block"
-      //document.getElementById("left").style.backgroundColor = "red" // for visualisation only
-
-      document.getElementById("middle").style.display = "inline-block"
-      //document.getElementById("middle").style.backgroundColor = "green" // for visualisation only
-
-      document.getElementById("right").style.width = "30%"
-      document.getElementById("right").style.display = "flex"
-      document.getElementById("right").style.alignItems = "center"
-      document.getElementById("right").style.justifyContent = "center"
-      document.getElementById("right").style.flexDirection = "column"
-
-
-      //document.getElementById("right").style.backgroundColor = "blue" // for visualisation only
-
-
-      // display setup
-      var all_display = document.getElementsByClassName("display")
-      for (i = 0; i < all_display.length; i++) {
-          all_display[i].style.display = "flex"
-          all_display[i].style.margin = "auto"
-          all_display[i].style.alignItems = "center"
-          all_display[i].style.justifyContent = "center"
-      }
-
-
-      // chatbox setup
-      document.getElementById("chatbox").style.width = "500px";
-      document.getElementById("chatbox").style.height = "550px";
-      document.getElementById("chatbox").style.display = "block";
-      document.getElementById("chatbox").style.margin = "auto";
-      document.getElementById("chatbox").style.backgroundColor = "purple"; // TODO: switch to diff colour for darkmode
-      document.getElementById("chatbox").style.padding = "10px"
-      document.getElementById("chatbox").style.overflow = "auto";
-      document.getElementById("chatbox").style.overflowY = "scroll";
-      //document.getElementById("chatbox").style.borderRadius = ".5em";
-
-
-      document.getElementById("dragbox").style.width = "400px"
-      document.getElementById("dragbox").style.height = "150px";
-      document.getElementById("dragbox").style.display = "block"
-      document.getElementById("dragbox").style.margin = "auto"
-      document.getElementById("dragbox").style.backgroundColor = "grey"
-
-
-      document.getElementById("answer").style.textAlign = "left";
-      document.getElementById("answer").style.float = "left";
-      document.getElementById("answer").style.background = "purple"; // TODO: switch to bg colour for darkmode
-      document.getElementById("answer").style.borderRadius = ".5em";
-      document.getElementById("answer").style.width = "50%";
-      document.getElementById("answer").style.padding = "1%";
-      document.getElementById("answer").style.margin = "1%";
-
-      document.getElementById("user").innerHTML = ""
-      document.getElementById("user").style.textAlign = "right";
-      document.getElementById("user").style.float = "right";
-      document.getElementById("user").style.background = "purple"; // TODO: switch to bg colour for darkmode
-      document.getElementById("user").style.borderRadius = ".5em";
-      document.getElementById("user").style.width = "50%";
-      document.getElementById("user").style.padding = "1%";
-      document.getElementById("user").style.margin = "1%";
-
-      // askbox setup
-      document.getElementById("askbox").style.width = "500px"
-      document.getElementById("askbox").style.height = "50px"
-      document.getElementById("askbox").style.display = "flex"
-      document.getElementById("askbox").style.margin = "auto"
-      document.getElementById("askbox").style.justifyContent = "center"
-      document.getElementById("query").style.width = "90%"
-
-      // text setup
-      var all_text = document.getElementsByClassName("text")
-      for (i = 0; i < all_text.length; i++) {
-          all_text[i].style.color = 'black';
-        all_text[i].style.textAlign = 'center';
-      }
-
+  <p style="text-align:center; padding:10px;">Modelworks © 2025</p>
+  <script>
+    // Theme toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
     });
 
+    // Chat functionality
+    async function ask() {
+      const queryInput = document.getElementById('query');
+      const query = queryInput.value.trim();
+      if (!query) return;
+
+      // Display user message
+      const chatbox = document.getElementById('chatbox');
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.textContent = query;
+      chatbox.appendChild(userMsg);
+
+      queryInput.value = '';
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      // Placeholder for thinking state
+      const botMsg = document.createElement('div');
+      botMsg.className = 'message bot';
+      botMsg.textContent = '⏳ Thinking...';
+      chatbox.appendChild(botMsg);
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      try {
+        const res = await fetch('http://localhost:7860/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query })
+        });
+        const data = await res.json();
+        botMsg.textContent = data.result;
+        document.getElementById('history').textContent += `You: ${query}\nAI: ${data.result}\n\n`;
+      } catch (err) {
+        botMsg.textContent = '❌ Error: ' + err.message;
+      }
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    // Drag and drop placeholders
+    const dragbox = document.getElementById('dragbox');
+    dragbox.addEventListener('dragover', (e) => e.preventDefault());
+    dragbox.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dragbox.textContent = 'File Dropped! (Implement handler)';
+    });
   </script>
-  
 </body>
 </html>
+
