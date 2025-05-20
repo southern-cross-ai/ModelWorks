@@ -1,5 +1,5 @@
 ---
-name: Feature Summary
+name: Feature Issue
 about: Here, I would provide a summary of the feature.
 ---
 
