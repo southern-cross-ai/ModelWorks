@@ -1,9 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from langchain_ollama import OllamaLLM
-
-llm = OllamaLLM(model="deepseek-r1:1.5b", base_url="http://ollama:11434")
+import components.pipeline as pipeline
 
 app = FastAPI() 
 
@@ -23,7 +21,7 @@ async def ask_question(request: Request):
         print(f"👉 Received query: {query}")
         
         # 调用 LLM
-        answer = llm.invoke(query)
+        answer = pipeline.call(query)
         print(f"✅ LLM returned: {answer}")
 
         return {"result": answer}
