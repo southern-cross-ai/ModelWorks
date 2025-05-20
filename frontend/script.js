@@ -1,71 +1,59 @@
-// FUNCTIONS
+// Theme toggle
+const toggleBtn = document.getElementById('theme-toggle');
+toggleBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  if (toggleBtn.innerHTML == "🌔") {
+    toggleBtn.innerHTML = "🌒"
+  }
+  else {
+    toggleBtn.innerHTML = "🌔"
+  }
+});
 
-// asking function
+// Chat functionality
 async function ask() {
-  
-  const query = document.getElementById("query").value;
-  document.getElementById("query").value = "";
+  const queryInput = document.getElementById('query');
+  const query = queryInput.value.trim();
+  if (!query) return;
 
-  
-  const userBox = document.getElementById("user");
-  userBox.innerText = query;
-  userBox.style.background = "blue"; // TODO: switch to diff colour for darkmode
+  // Display user message
+  const chatbox = document.getElementById('chatbox');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'message user';
+  userMsg.textContent = query;
+  chatbox.appendChild(userMsg);
 
-  
-  const answerBox = document.getElementById("answer");
-  answerBox.innerText = "⏳ Thinking...";
-  answerBox.style.background = "white"; // TODO: switch to diff colour for darkmode
+
+  queryInput.value = '';
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  // Placeholder for thinking state
+  const botMsg = document.createElement('div');
+  botMsg.className = 'message bot';
+  botMsg.textContent = '⏳ Thinking...';
+  chatbox.appendChild(botMsg);
+  chatbox.scrollTop = chatbox.scrollHeight;
 
   try {
-    const res = await fetch("http://localhost:7860/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+    const res = await fetch('http://localhost:7860/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query })
     });
-    
-    document.getElementById("history").innerHTML += "'" + query + "'" + '<br><br>'
-    
-
     const data = await res.json();
-    answerBox.innerText = data.result;
-  } 
-  catch (err) {
-    answerBox.innerText = "❌ Error: " + err.message;
+    botMsg.textContent = data.result;
+    document.getElementById('history').textContent += `You: ${query}\nAI: ${data.result}\n\n`; 
+  } catch (err) {
+    botMsg.textContent = '❌ Error: ' + err.message;
   }
-  
+
+  chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-
-// RAG functions
-async function dragover(ev) {
-  document.getElementById("dragbox").innerText = "insert drag function here"
-}
-
-async function drop(ev) {
-  document.getElementById("dragbox").innerText = "insert drop function here"
-}
-
-
-// websearch functions
-// TODO insert
-
-// light/darkmode functions
-async function light() { // lightmode
-  console.log("lightmode")
-  document.body.style.backgroundColor = "white"
-  var all_text = document.getElementsByClassName("text")
-  for (i = 0; i < all_text.length; i++) {
-    all_text[i].style.color = 'black';
-  }
-}
-
-async function dark() { // darkmode
-  console.log("darkmode")
-  document.body.style.backgroundColor = "black"
-  var all_text = document.getElementsByClassName("text")
-  for (i = 0; i < all_text.length; i++) {
-    all_text[i].style.color = 'white';
-  }
-}
+// Drag and drop placeholders
+const dragbox = document.getElementById('dragbox');
+dragbox.addEventListener('dragover', (e) => e.preventDefault());
+dragbox.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dragbox.textContent = 'File Dropped! (Implement handler)';
+});

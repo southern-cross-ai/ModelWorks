@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeepSeek QA</title>
+  <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/159676205?s=200&v=4">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -138,7 +139,7 @@
   </style>
 </head>
 <body>
-  <button id="theme-toggle" class="theme-toggle">🌔</button>
+  <button id="theme-toggle" class="theme-toggle">🌒</button>
   <div class="container">
     <div class="column">
       <h2>Chat History</h2>
@@ -160,10 +161,12 @@
       <div class="display">
         <button id="rag" type="button">Submit</button>
       </div>
+      <br><br>
       <h2>Websearch Mode</h2>
       <div class="display">
         <label><input type="checkbox" id="websearch" checked /> ON</label>
       </div>
+      <br><br>
       <h2>Rate Your Experience</h2>
       <div class="display">
         <input type="range" id="rating" min="0" max="5" />
@@ -171,60 +174,7 @@
     </div>
   </div>
   <p style="text-align:center; padding:10px;">Modelworks © 2025</p>
-  <script>
-    
-    // Theme toggle
-    const toggleBtn = document.getElementById('theme-toggle');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
-
-    // Chat functionality
-    async function ask() {
-      const queryInput = document.getElementById('query');
-      const query = queryInput.value.trim();
-      if (!query) return;
-
-      // Display user message
-      const chatbox = document.getElementById('chatbox');
-      const userMsg = document.createElement('div');
-      userMsg.className = 'message user';
-      userMsg.textContent = query;
-      chatbox.appendChild(userMsg);
-
-      queryInput.value = '';
-      chatbox.scrollTop = chatbox.scrollHeight;
-
-      // Placeholder for thinking state
-      const botMsg = document.createElement('div');
-      botMsg.className = 'message bot';
-      botMsg.textContent = '⏳ Thinking...';
-      chatbox.appendChild(botMsg);
-      chatbox.scrollTop = chatbox.scrollHeight;
-
-      try {
-        const res = await fetch('http://localhost:7860/ask', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query })
-        });
-        const data = await res.json();
-        botMsg.textContent = data.result;
-        document.getElementById('history').textContent += `You: ${query}\nAI: ${data.result}\n\n`;
-      } catch (err) {
-        botMsg.textContent = '❌ Error: ' + err.message;
-      }
-      chatbox.scrollTop = chatbox.scrollHeight;
-    }
-
-    // Drag and drop placeholders
-    const dragbox = document.getElementById('dragbox');
-    dragbox.addEventListener('dragover', (e) => e.preventDefault());
-    dragbox.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dragbox.textContent = 'File Dropped! (Implement handler)';
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 
