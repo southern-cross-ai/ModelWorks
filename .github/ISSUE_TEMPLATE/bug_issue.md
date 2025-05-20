@@ -1,5 +1,5 @@
 ---
-name: Bug Summary
+name: Bug Issue
 about: Here, I would provide a summary of the bug.
 ---
 
