@@ -1,12 +1,16 @@
 import components.retrieve as retrieve
 import components.llm as llm
 import components.history as history
+import components.embedding as embedding
+import components.database as database
+
+k = 3
 
 # primary function
 def call(query: str, messages: list = []):
     history_aware_query = history.contextualize(query, messages)
 
-    context = retrieve.retrieve(history_aware_query)
+    context = retrieve.retrieve(history_aware_query, k, embedding.get(), database.get())
 
     if context != []:
         contextualized_query = format(history_aware_query, context)
@@ -18,4 +22,7 @@ def call(query: str, messages: list = []):
 
 def format(query: str, context: str):
     # to be implimented
+    context = "\n".join(context)
+    query = f"Refer to the following information:\n\n{context}\n\nQuestion: {query}"
     return query
+
