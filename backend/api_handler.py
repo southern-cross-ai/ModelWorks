@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import components.pipeline as pipeline
+import components.upload as upload
 
 app = FastAPI()
 
@@ -17,7 +18,7 @@ app.add_middleware(
 @app.post("/upload")
 async def upload_pdf(file: UploadFile):
     try:
-        number_of_text_stored = pipeline.upload(file)
+        number_of_text_stored = upload.upload(file)
         return  {"result": f"Stored {number_of_text_stored} paragraphs."}
     except Exception as e:
         print(f"❌ Error occurred: {e}")
