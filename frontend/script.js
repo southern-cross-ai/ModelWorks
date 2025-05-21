@@ -86,16 +86,15 @@ async function ask() {
   userMsg.textContent = query;
   chatbox.appendChild(userMsg);
 
-
   queryInput.value = '';
-  chatbox.scrollTop = chatbox.scrollHeight;
+  scrollToBottom(chatbox);
 
   // Placeholder for thinking state
   const botMsg = document.createElement('div');
   botMsg.className = 'message bot';
   botMsg.textContent = '⏳ Thinking...';
   chatbox.appendChild(botMsg);
-  chatbox.scrollTop = chatbox.scrollHeight;
+  scrollToBottom(chatbox);
 
   try {
     const res = await fetch('http://localhost:7860/ask', {
@@ -110,5 +109,9 @@ async function ask() {
     botMsg.textContent = '❌ Error: ' + err.message;
   }
 
+  scrollToBottom(chatbox);
+}
+
+function scrollToBottom(chatbox) {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
