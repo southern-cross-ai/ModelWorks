@@ -2,6 +2,37 @@
 
 MODEL="deepseek-r1:1.5b"
 
+echo "🔍 Checking if Docker is running..."
+if ! docker info > /dev/null 2>&1; then
+  echo "🚫 Docker is not running. Attempting to start Docker..."
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    open --background -a Docker
+  elif grep -qi microsoft /proc/version 2>/dev/null || [[ "$OSTYPE" == "msys" ]]; then
+    powershell.exe -Command "Start-Process 'C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe'" > /dev/null 2>&1
+  else
+    echo "❌ Unsupported OS for auto-starting Docker. Please start Docker manually."
+    exit 1
+  fi
+
+  echo "⏳ Waiting for Docker to start..."
+  maxWait=60
+  elapsed=0
+  while ! docker info > /dev/null 2>&1; do
+    if [ $elapsed -ge $maxWait ]; then
+      echo "❌ Docker did not start within $maxWait seconds. Please check Docker Desktop manually."
+      exit 1
+    fi
+    sleep 5
+    elapsed=$((elapsed + 2))
+    echo "  ...waiting for Docker engine ($elapsed sec)"
+  done
+  echo "✅ Docker is running."
+else
+  echo "✅ Docker is already running."
+fi
+
+
 echo "🔧 Starting Ollama service..."
 docker-compose up --build
 
