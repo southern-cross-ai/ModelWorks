@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeepSeek QA</title>
-  <link rel="icon" type="image/x-icon" href="https://avatars.githubusercontent.com/u/159676205?s=200&v=4">
+  <link rel="icon" type="image/x-icon" href="https://i.imgur.com/tHtVPF4.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -44,21 +44,21 @@
       box-shadow: 0 4px 6px var(--card-shadow);
       display: flex;
       flex-direction: column;
-      overflow: auto;
     }
     .column h2, .column h3, .column p {
       margin-top: 0;
     }
     .chatbox {
-      flex: 1;
       background-color: var(--background);
       border: 1px solid #ccc;
       border-radius: 8px;
       padding: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      overflow-y: auto;
+      justify-content: flex-start;
+      height: 650px;
+      max-height: 650px;
+      overflow-y: auto; /* Added this to enable scrolling */
     }
     #history {
       white-space: pre-wrap;
@@ -69,16 +69,17 @@
       margin: 5px 0;
       padding: 10px;
       border-radius: 8px;
+      height: auto; /* Allow messages to grow based on content */
     }
     .message.user {
       align-self: flex-end;
+      color: white;
       background-color: var(--primary);
-      color: #fff;
     }
     .message.bot {
       align-self: flex-start;
+      color: white;
       background-color: var(--secondary);
-      color: #fff;
     }
     .input-group {
       display: flex;
@@ -139,9 +140,16 @@
   </style>
 </head>
 <body>
-  <button id="theme-toggle" class="theme-toggle">🌒</button>
+
+  <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+    <span style="font-size: 2rem; margin-right: 10px;">Modelworks</span>
+    <img src="https://i.imgur.com/tHtVPF4.png" alt="Modelworks logo" style="height: 40px; vertical-align: middle; margin-left: 10px;">
+    <span style="font-size: 1.2rem; margin-left: 10px;">Chat with a Model (demo)</span>
+    <button id="theme-toggle" class="theme-toggle" style="margin-left: 10px;">🌒</button>
+  </div>
+
   <div class="container">
-    <div class="column">
+    <div style="overflow: auto;" class="column">
       <h2>Chat History</h2>
       <pre id="history"></pre>
     </div>
@@ -155,7 +163,7 @@
         <button type="button" onclick="ask()">Send</button>
       </div>
     </div>
-    <div class="column">
+    <div style="overflow: auto;" class="column">
       <h2>Upload a PDF</h2>
       <div class="dragbox" id="dragbox">DRAG or DROP</div>
       <div class="display">
