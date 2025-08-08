@@ -1,3 +1,8 @@
+---
+name: Bug Issue
+about: Here, I would provide a summary of the bug.
+---
+
 ## Bug Summary
 Here, I would provide a summary of the bug.
 
