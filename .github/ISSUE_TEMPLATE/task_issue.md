@@ -1,3 +1,8 @@
+---
+name: Task Issue
+about: Here, I would provide a summary of the task.
+---
+
 ## Task Summary
 This task is for `<something>`.
 

@@ -1,3 +1,8 @@
+---
+name: Feature Issue
+about: Here, I would provide a summary of the feature.
+---
+
 ## Feature Summary
 This feature allows `<>`.
 
